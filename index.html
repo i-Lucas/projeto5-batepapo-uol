@@ -12,16 +12,16 @@
 
 <body>
 
-    <section class='home-screen hidden'>
+    <section class='home-screen'><!-- hidden -->
         <div class="home-content">
             <img src="./img/logo.png" alt="">
             <input class='user-name' type="text">
-            <button>Entrar</button>
+            <button onclick="GetUserName()">Entrar</button>
         </div>
     </section>
 
 
-    <main class = ''> <!-- hidden -->
+    <main class = 'hidden'> <!-- hidden -->
         <header>
             <img src="./img/logo.png" alt="">
             <ion-icon name="people"></ion-icon>
@@ -37,12 +37,12 @@
             <div class="message"></div>
             <div class="message"></div>
             <div class="message reserved"></div>
-            <div class="blackout hidden"></div> <!-- hidden -->
+            <div class="blackout hidden"></div> <!-- blackout hidden -->
         </section>
 
         <nav class = 'sidebar '> <!-- hidden -->
             <div class="title"><h1>Escolha um contato<br> para enviar mensagem:</h1></div>
-            <div class = 'message-for-all display-flex box'><ion-icon name="people"></ion-icon><p>Todos</p></div>
+            <div class = 'message-for-all display-flex box'><ion-icon name="people"></ion-icon><p>Todos</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
 
             <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Joao</p><ion-icon name="checkmark-outline" class = 'selected hidden'></ion-icon></div>
             <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
@@ -51,12 +51,14 @@
             <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
             
             <div class="title"><h1>Escolha a visibilidade:</h1></div>
-            <div class = 'public-message display-flex box'><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
-            <div class = 'private-message display-flex box'><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
+            <div class = 'public-message display-flex box'><ion-icon name="lock-open"></ion-icon><p>Público</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class = 'private-message display-flex box'><ion-icon name="lock-closed"></ion-icon><p>Privado</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class="exit display-flex box" onclick = "RemoveSidebar()"><ion-icon name="exit-outline"></ion-icon></div>
         </nav>
 
         <footer>
             <input type="text">
+            <div class="settings" onclick = "ShowSidebar()"><ion-icon name="settings-sharp"></ion-icon></div>
             <ion-icon name="paper-plane-outline"></ion-icon>
         </footer>
     </main>

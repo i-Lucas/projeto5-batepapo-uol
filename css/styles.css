@@ -93,7 +93,7 @@ footer {
     left: 0px;
     bottom: 0px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background: #FFFFFF;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
@@ -104,6 +104,7 @@ footer ion-icon {
 
     font-size: 25px;
     margin-right: 20px;
+    margin-left: 20px;
 }
 
 footer input {
@@ -164,7 +165,7 @@ footer input {
     flex-direction: column;
     align-items: center;
 
-    background-color: pink;
+    background-color: #FFFFFF;
 }
 
 .sidebar .title {
@@ -173,20 +174,17 @@ footer input {
     display: flex;
     justify-content: center;
     text-align: center;
-    /* background: orange; */
 }
 
 .sidebar .box {
     width: 100%;
     height: 35px;
     padding-left: 20px;
-    background: red;
-    border: 1px solid black;
 }
 
-.sidebar .selected  {
-    position: fixed;
-    right: 20px;
+.selected {
+   margin-left: 35%;
+   color: #28BB25;
 }
 
 .sidebar h1 {
@@ -201,6 +199,26 @@ footer input {
     text-align: center;
 }
 
+.sidebar p {
+    margin-left: 20px;
+}
+
+.sidebar ion-icon {
+    font-size: 25px;
+}
+
+.box:hover {
+    cursor: pointer;
+}
+
+.exit:hover {
+    cursor: pointer;
+}
+
+.sidebar .exit {
+    margin-top: 20px;
+}
+
 /*  */
 
 .blackout {
@@ -210,7 +228,7 @@ footer input {
     width: 100%;
     height: 100vh;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8);
 }
 
 /*  */
@@ -225,10 +243,54 @@ footer input {
     display: none
 }
 
+/*  response */
+
+@media (max-width: 600px) {
+
+    footer input {
+        width: 60%
+    }
+
+}
+
 @media (min-width: 600px) {
 
     .sidebar {
         width: 25%;
     }
 
+    footer input {
+        width: 80%
+    }
+
+}
+
+/* teste */
+
+.anim-hidden {
+    animation-duration: 3s;
+    animation-name: animhidden;
+}
+
+.anim-show {
+    animation-duration: 3s;
+    animation-name: animshow;
+}
+
+@keyframes animshow {
+    from {
+        right: -350px;
+    }
+    to {
+        right: 0px;
+    }
+}
+
+@keyframes animhidden {
+    from {
+        right: 0px;
+    }
+    to {
+        right: -350px;
+    }
 }
