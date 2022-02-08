@@ -12,8 +12,8 @@
 
 <body>
 
-    <section class='tela-entrada hidden'>
-        <div class="container">
+    <section class='tela-entrada'>
+        <div class="entrada-content">
             <img src="./img/logo.png" alt="">
             <input class='nome-entrada' type="text">
             <button>Entrar</button>
@@ -21,7 +21,7 @@
     </section>
 
 
-    <main class = ''>
+    <main class = 'hidden'>
         <header>
             <img src="./img/logo.png" alt="">
             <ion-icon name="people"></ion-icon>
@@ -36,18 +36,19 @@
             <div class="mensagem status"></div>
             <div class="mensagem"></div>
             <div class="mensagem"></div>
-            <div class="mensagem"></div>
+            <div class="mensagem reservada"></div>
+            <div class="blackout hidden"></div>
         </section>
 
         <nav class = 'sidebar'>
             <h1>Escolha um contato para enviar mensagem:</h1>
-            <div class = 'mensagem-para-todos'><ion-icon name="people"></ion-icon><p>Todos</p></div>
+            <div class = 'mensagem-para-todos display-flex'><ion-icon name="people"></ion-icon><p>Todos</p></div>
 
-            <div class = 'user'><ion-icon name="person-circle"></ion-icon><p>Joao</p></div>
-            <div class = 'user'><ion-icon name="person-circle"></ion-icon><p>Maria</p></div>
+            <div class = 'user display-flex'><ion-icon name="person-circle"></ion-icon><p>Joao</p></div>
+            <div class = 'user display-flex'><ion-icon name="person-circle"></ion-icon><p>Maria</p></div>
             <h1>Escolha a visibilidade:</h1>
-            <div class = 'mensagem-publica'><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
-            <div class = 'mensagem-privada'><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
+            <div class = 'mensagem-publica display-flex'><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
+            <div class = 'mensagem-privada display-flex'><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
         </nav>
 
         <footer>

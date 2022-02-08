@@ -11,7 +11,7 @@
     /* background-color: blue; */
 }
 
-.container {
+.entrada-content {
 
     width: 300px;
     max-width: 100%;
@@ -26,12 +26,12 @@
     /* background-color: red; */
 }
 
-.container img {
+.entrada-content img {
     width: 130px;
     height: 92px;
 }
 
-.container input {
+.entrada-content input {
 
     width: 261px;
     max-width: 100%;
@@ -46,16 +46,12 @@
     border-radius: 4px;
 }
 
-.container button {
+.entrada-content button {
     width: 109px;
     height: 45px;
     background: #E7E7E7;
     border-radius: 9px;
     border: none;
-}
-
-.hidden {
-    display: none
 }
 
 /*  */
@@ -88,20 +84,16 @@ header ion-icon {
 /*  */
 
 footer {
-
     position: fixed;
     width: 100%;
     height: 80px;
     left: 0px;
     bottom: 0px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     background: #FFFFFF;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-
     background-color: red;
 }
 
@@ -126,15 +118,18 @@ footer input {
 /*  */
 
 .content {
-    height: 100vh;
+    height: 0 auto;
+    width: 100%;
     margin-top: 80px;
+    margin-bottom: 80px;
 }
 
 .mensagem {
     width: 100%;
     height: 100px;
     border-radius: 2px;
-    background: #FFFFFF
+    background-color: blue;
+    /* background: #FFFFFF */
 }
 
 .reservada {
@@ -147,10 +142,32 @@ footer input {
 
 /* sidebar */
 
-.mensagem-para-todos {
+.sidebar {
+
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 65%;
+    height: 100%;
+    z-index: 1;
+    background-color: pink;
+}
+
+.blackout {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/*  */
+
+.display-flex {
     display: flex;
 }
 
-.user {
-    display: flex;
+.hidden {
+    display: none
 }
