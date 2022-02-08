@@ -12,43 +12,47 @@
 
 <body>
 
-    <section class='tela-entrada'>
-        <div class="entrada-content">
+    <section class='home-screen hidden'>
+        <div class="home-content">
             <img src="./img/logo.png" alt="">
-            <input class='nome-entrada' type="text">
+            <input class='user-name' type="text">
             <button>Entrar</button>
         </div>
     </section>
 
 
-    <main class = 'hidden'>
+    <main class = ''> <!-- hidden -->
         <header>
             <img src="./img/logo.png" alt="">
             <ion-icon name="people"></ion-icon>
         </header>
 
-        <section class="content">
-            <div class="mensagem"></div>
-            <div class="mensagem reservada"></div>
-            <div class="mensagem status"></div>
-            <div class="mensagem "></div>
-            <div class="mensagem"></div>
-            <div class="mensagem status"></div>
-            <div class="mensagem"></div>
-            <div class="mensagem"></div>
-            <div class="mensagem reservada"></div>
-            <div class="blackout hidden"></div>
+        <section class="page-content">
+            <div class="message"></div>
+            <div class="message reserved"></div>
+            <div class="message status"></div>
+            <div class="message "></div>
+            <div class="message"></div>
+            <div class="message status"></div>
+            <div class="message"></div>
+            <div class="message"></div>
+            <div class="message reserved"></div>
+            <div class="blackout hidden"></div> <!-- hidden -->
         </section>
 
-        <nav class = 'sidebar'>
-            <h1>Escolha um contato para enviar mensagem:</h1>
-            <div class = 'mensagem-para-todos display-flex'><ion-icon name="people"></ion-icon><p>Todos</p></div>
+        <nav class = 'sidebar '> <!-- hidden -->
+            <div class="title"><h1>Escolha um contato<br> para enviar mensagem:</h1></div>
+            <div class = 'message-for-all display-flex box'><ion-icon name="people"></ion-icon><p>Todos</p></div>
 
-            <div class = 'user display-flex'><ion-icon name="person-circle"></ion-icon><p>Joao</p></div>
-            <div class = 'user display-flex'><ion-icon name="person-circle"></ion-icon><p>Maria</p></div>
-            <h1>Escolha a visibilidade:</h1>
-            <div class = 'mensagem-publica display-flex'><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
-            <div class = 'mensagem-privada display-flex'><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
+            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Joao</p><ion-icon name="checkmark-outline" class = 'selected hidden'></ion-icon></div>
+            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            
+            <div class="title"><h1>Escolha a visibilidade:</h1></div>
+            <div class = 'public-message display-flex box'><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
+            <div class = 'private-message display-flex box'><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
         </nav>
 
         <footer>
