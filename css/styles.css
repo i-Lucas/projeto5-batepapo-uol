@@ -69,7 +69,7 @@ header {
 
     padding-left: 25px;
     padding-right: 25px;
-    background-color: aqua;
+    /* background-color: aqua; */
 }
 
 header img {
@@ -97,7 +97,7 @@ footer {
     align-items: center;
     background: #FFFFFF;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-    background-color: red;
+    /* background-color: red; */
 }
 
 footer ion-icon {
@@ -119,6 +119,7 @@ footer input {
     display: flex;
     align-items: center;
     margin-left: 20px;
+    border: none;
 }
 
 /*  */
@@ -166,57 +167,75 @@ footer input {
     align-items: center;
 
     background-color: #FFFFFF;
+    padding-top: 15px;
 }
 
 .sidebar .title {
+
     width: 100%;
-    height: 120px;
+    height: 80px;
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
 .sidebar .box {
+
     width: 100%;
     height: 35px;
-    padding-left: 20px;
+    margin-left: 20px;
+
+    display: flex;
+    align-items: center;
 }
 
-.selected {
-   margin-left: 35%;
-   color: #28BB25;
+.user-selected {
+
+    width: 50px;
+    color: #28BB25;
+}
+
+.spacing {
+    
+    width: 60%;
 }
 
 .sidebar h1 {
 
     font-family: Roboto;
-    font-style: normal;
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;
+
     display: flex;
     align-items: center;
     text-align: center;
 }
 
 .sidebar p {
+
     margin-left: 20px;
+
+    font-family: Roboto;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 .sidebar ion-icon {
+
     font-size: 25px;
 }
 
-.box:hover {
-    cursor: pointer;
-}
+.box, .exit, .show-sidebar, .send-btn:hover {
 
-.exit:hover {
     cursor: pointer;
 }
 
 .sidebar .exit {
-    margin-top: 20px;
+    
+    position: absolute;
+    bottom: 0px;
+    margin-left: 10px;
 }
 
 /*  */
@@ -228,7 +247,9 @@ footer input {
     width: 100%;
     height: 100vh;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
+    animation-duration: 3s;
+    animation-name: gradientshow;
 }
 
 /*  */
@@ -253,7 +274,7 @@ footer input {
 
 }
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
 
     .sidebar {
         width: 25%;
@@ -262,34 +283,67 @@ footer input {
     footer input {
         width: 80%
     }
-
 }
 
-/* teste */
+/* anims */
 
 .anim-hidden {
+
     animation-duration: 3s;
     animation-name: animhidden;
 }
 
 .anim-show {
+
     animation-duration: 3s;
     animation-name: animshow;
 }
 
+.removegradient {
+
+    animation-duration: 3s;
+    animation-name: gradienthidden;
+}
+
+@keyframes gradienthidden {
+
+    from {
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0.1);
+    }
+}
+
+@keyframes gradientshow {
+
+    from {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    to {
+        background: rgba(0, 0, 0, 0.9);
+    }
+}
+
 @keyframes animshow {
+
     from {
         right: -350px;
     }
+
     to {
         right: 0px;
     }
 }
 
 @keyframes animhidden {
+
     from {
         right: 0px;
     }
+
     to {
         right: -350px;
     }

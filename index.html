@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <link href="./img/favicon.ico" TYPE="image/ico" REL="icon">
     <title>Document</title>
 </head>
 
@@ -24,42 +25,43 @@
     <main class = 'hidden'> <!-- hidden -->
         <header>
             <img src="./img/logo.png" alt="">
-            <ion-icon name="people"></ion-icon>
+            <div class="show-sidebar"onclick = "ShowSidebar()"><ion-icon name="people"></ion-icon></div>
         </header>
 
         <section class="page-content">
             <div class="message"></div>
-            <div class="message reserved"></div>
+            <!-- <div class="message reserved"></div>
             <div class="message status"></div>
             <div class="message "></div>
             <div class="message"></div>
             <div class="message status"></div>
             <div class="message"></div>
             <div class="message"></div>
-            <div class="message reserved"></div>
-            <div class="blackout hidden"></div> <!-- blackout hidden -->
+            <div class="message reserved"></div> -->
+            <div class="blackout hidden"></div>
         </section>
 
         <nav class = 'sidebar '> <!-- hidden -->
             <div class="title"><h1>Escolha um contato<br> para enviar mensagem:</h1></div>
-            <div class = 'message-for-all display-flex box'><ion-icon name="people"></ion-icon><p>Todos</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class = 'message-for-all display-flex box'><ion-icon name="people"></ion-icon><p>Todos</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
 
-            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Joao</p><ion-icon name="checkmark-outline" class = 'selected hidden'></ion-icon></div>
-            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
-            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
-            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
-            <div class = 'user display-flex box'><ion-icon name="person-circle"></ion-icon><p>Maria</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Maria Joaquina</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Nome Grande</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Lucas Emmanuel Oliveira</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Maria Joaquina</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Maria</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Maria</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
             
             <div class="title"><h1>Escolha a visibilidade:</h1></div>
-            <div class = 'public-message display-flex box'><ion-icon name="lock-open"></ion-icon><p>Público</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
-            <div class = 'private-message display-flex box'><ion-icon name="lock-closed"></ion-icon><p>Privado</p><ion-icon name="checkmark-outline" class = 'selected'></ion-icon></div>
+            <div class = 'public-message display-flex box' onclick = 'SelectUser(this)'><ion-icon name="lock-open"></ion-icon><p class = "spacing">Público</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'private-message display-flex box' onclick = 'SelectUser(this)'><ion-icon name="lock-closed"></ion-icon><p class = "spacing">Reservadamente</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
             <div class="exit display-flex box" onclick = "RemoveSidebar()"><ion-icon name="exit-outline"></ion-icon></div>
         </nav>
 
         <footer>
-            <input type="text">
-            <div class="settings" onclick = "ShowSidebar()"><ion-icon name="settings-sharp"></ion-icon></div>
-            <ion-icon name="paper-plane-outline"></ion-icon>
+            <input type = 'text' id = 'usertext' placeholder="Escreva aqui...">
+            <input type = 'submit' id = 'submit' class = 'hidden'>
+            <div class="send-btn" onclick = 'GetUserMessage("button")'><ion-icon name="paper-plane-outline"></ion-icon></div>
         </footer>
     </main>
 
