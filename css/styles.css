@@ -135,13 +135,40 @@ footer input {
 .message {
 
     width: 100%;
-    height: 100px;
+    min-height: 40px;
+
     border-radius: 2px;
-    background-color: blue;
-    /* background: #FFFFFF */
+    background-color: #FFFFFF; 
+
+    display: flex;
+    align-items: center;
+
+    font-family: Roboto;
+    font-size: 14px;
 }
 
-.reserved {
+/* spans */
+
+.span-user {
+
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.span-message {
+
+    margin-left: 5px;
+}
+
+.span-time {
+
+    margin-left: 10px;
+    color:  #AAAAAA;
+}
+
+/*  */
+
+.private {
 
     background-color: #FFDEDE;
 }

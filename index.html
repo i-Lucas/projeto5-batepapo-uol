@@ -29,7 +29,7 @@
         </header>
 
         <section class="page-content">
-            <div class="message"></div>
+            <!-- <div class="message"></div> -->
             <!-- <div class="message reserved"></div>
             <div class="message status"></div>
             <div class="message "></div>
@@ -43,7 +43,7 @@
 
         <nav class = 'sidebar '> <!-- hidden -->
             <div class="title"><h1>Escolha um contato<br> para enviar mensagem:</h1></div>
-            <div class = 'message-for-all display-flex box'><ion-icon name="people"></ion-icon><p>Todos</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'message-for-all display-flex box'onclick = 'SelectOption(this, "public")'><ion-icon name="people"></ion-icon><p class = "spacing">Todos</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
 
             <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Maria Joaquina</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
             <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Nome Grande</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
@@ -53,8 +53,8 @@
             <div class = 'user display-flex box'onclick = 'SelectUser(this)'><ion-icon name="person-circle"></ion-icon><p class = "spacing">Maria</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
             
             <div class="title"><h1>Escolha a visibilidade:</h1></div>
-            <div class = 'public-message display-flex box' onclick = 'SelectUser(this)'><ion-icon name="lock-open"></ion-icon><p class = "spacing">Público</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
-            <div class = 'private-message display-flex box' onclick = 'SelectUser(this)'><ion-icon name="lock-closed"></ion-icon><p class = "spacing">Reservadamente</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'public-message display-flex box' onclick = 'SelectOption(this, "public")'><ion-icon name="lock-open"></ion-icon><p class = "spacing">Público</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
+            <div class = 'private-message display-flex box' onclick = 'SelectOption(this, "private")'><ion-icon name="lock-closed"></ion-icon><p class = "spacing">Reservadamente</p><ion-icon name="checkmark-outline" class = 'user-selected hidden'></ion-icon></div>
             <div class="exit display-flex box" onclick = "RemoveSidebar()"><ion-icon name="exit-outline"></ion-icon></div>
         </nav>
 
