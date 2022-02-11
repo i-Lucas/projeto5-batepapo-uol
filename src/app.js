@@ -1,13 +1,19 @@
 // Entrar()
 
+
+
+let UserName = {}
+
+// GetUserName()
+
 function GetUserName() {
 
-    const username = document.querySelector('.user-name').value
-    console.log(username)
-
-    if (username === 'Lucas') {
-        Entrar()
+    let user = document.querySelector('.user-name').value
+    user = user.toString()
+    UserName = {
+        name: user
     }
+    SendServerUserName(UserName)
 }
 
 function Entrar() {
@@ -53,7 +59,7 @@ function ShowSidebar() {
 
 let optionChecked = false
 let thisOptionChecked = 'none'
-let typeSelected = 'public'
+let typeSelected = 'message'
 
 let userChecked = false
 let thisUserChecked = 'none'
@@ -88,21 +94,21 @@ function SelectOption(option, type) {
 
     if (optionChecked === false) {
 
-        if (type === 'public') {
+        if (type === 'message') {
             option.classList.remove('hidden')
             thisOptionChecked = option
             optionChecked = true
 
             userSelected = 'Todos'
-            typeSelected = 'public'
+            typeSelected = 'message'
         }
 
-        if (type === 'private') {
+        if (type === 'private_message') {
             option.classList.remove('hidden')
             thisOptionChecked = option
             optionChecked = true
 
-            typeSelected = 'private'
+            typeSelected = 'private_message'
         }
     }
 
@@ -120,6 +126,16 @@ function SelectOption(option, type) {
 
 document.addEventListener('keypress', GetUserMessage)
 
+
+function GetTime() {
+
+    let data = new Date();
+    let hr = data.getHours();
+    let min = data.getMinutes();
+    let seg = data.getSeconds();
+    return `${hr}:${min}:${seg}`
+}
+
 function GetUserMessage(userkey) {
 
     if (userkey.key === 'Enter' || userkey === 'button') {
@@ -129,29 +145,37 @@ function GetUserMessage(userkey) {
         document.querySelector('#usertext').value = ''
 
         console.log(typeSelected, text, userSelected)
-        SendMessage('Lucas', typeSelected, text, userSelected, GetTime())
+        SendMessage(UserName, typeSelected, text, userSelected, 0)
+
+        const msgObj = {
+
+            from: `${UserName}`,
+            to: `${userSelected}`,
+            text: `${text}`,
+            type: `${typeSelected}`
+        }
+
+
+        axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', msgObj)
+
+
     }
 }
 
-function SendMessage(user, type, text, receive, time) {
 
-    if(text.length > 50) {
-        alert('texto muito grande')
-        return
-    }
+function SendMessage(user, type, text, receive, time) {
 
     if (text.length === 0) return
 
     const page = document.querySelector('.page-content')
-    const [hr, min, seg] = time
 
-    if (type === 'private') {
+    if (type === 'private_message') {
 
         page.innerHTML += `
 
         <div class="message ${type}">
             <p><span class = 'span-time'>
-            (${hr}:${min}:${seg})</span> 
+            (${time})</span> 
             <span class = 'span-user'> ${user}</span>
             reservadamente para<span class = 'span-user'>${receive}</span>:
             <span class = 'span-message'>
@@ -161,13 +185,13 @@ function SendMessage(user, type, text, receive, time) {
         return
     }
 
-    if (type === 'public') {
+    if (type === 'message') {
 
         page.innerHTML += `
 
             <div class="message">
                 <p><span class = 'span-time'>
-                (${hr}:${min}:${seg})</span> 
+                (${time})</span> 
                 <span class = 'span-user'> ${user}</span> para<span class = 'span-user'>${receive}</span>:
                 <span class = 'span-message'>
                 ${text}</p></span>
@@ -175,33 +199,101 @@ function SendMessage(user, type, text, receive, time) {
         `
         return
     }
-}
 
-function UserConnected(time, user) {
+    if (type === 'status') {
 
-    const page = document.querySelector('.page-content')
-    const [hr, min, seg] = time
 
-    page.innerHTML += `
+        page.innerHTML += `
 
         <div class="message status">
             <p><span class = 'span-time'>
-            (${hr}:${min}:${seg})</span> 
+            (${time})</span> 
             <span class = 'span-user'> ${user}</span>
             <span class = 'span-message'>
             entra na sala ...</p></span>
         </div>
     `
+    }
 }
 
-// essa função vai obter o time da API
-function GetTime() {
+function DeleteMessages() {
 
-    let data = new Date();
-    let hr = data.getHours();
-    let min = data.getMinutes();
-    let seg = data.getSeconds();
-    return [hr, min, seg]
+    const page = document.querySelector('.page-content')
+    while(page.firstChild) {
+        page.removeChild(page.firstChild)
+    }
 }
 
-UserConnected(GetTime(), 'Lucas')
+// UserConnected(GetTime(), 'Lucas')
+
+// conectar com o servidor
+// obter as mensagens 
+// enviar as mensagens 
+
+function SendServerUserName(userObj) {
+
+    const promise = axios.post('https://mock-api.driven.com.br/api/v4/uol/participants', userObj)
+    promise.then(PromiseReceived); // deu tudo certo
+    promise.catch(ErrorReceived) // deu erro
+}
+
+let interval_CheckOnlineUser = undefined
+let interval_LoadMessages = undefined
+
+function PromiseReceived(promise) {
+
+    console.log(promise)
+    interval_CheckOnlineUser = setInterval(CheckOnlineUser(UserName), 5000)
+    interval_LoadMessages = setInterval(LoadMessagesPromise, 5000)
+    Entrar()
+    // LoadMessagesPromise()
+}
+
+function ErrorReceived(error) {
+
+    console.log('error code: ' + error.response.status)
+    console.log('error msg: ' + error.response.data)
+
+    if (error.response.status === 400) {
+        return alert('Já existe um usuário online com esse nickname. Por favor escolha outro')
+    }
+}
+
+// load messages
+function LoadMessagesPromise() {
+    const promise = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages')
+    promise.then(LoadMessages)
+    promise.catch(LoadMessagesError)
+}
+
+function LoadMessages(promise) {
+
+    console.log(promise.data)
+    let lista = promise.data
+
+    DeleteMessages()
+
+    for (let i = 0; i < lista.length; i++) {
+
+        // console.log(lista[i].from, lista[i].type, lista[i].text, lista[i].to, lista[i].time)
+        SendMessage(lista[i].from, lista[i].type, lista[i].text, lista[i].to, lista[i].time)
+    }
+
+}
+
+function LoadMessagesError(error) {
+    console.log('error code: ' + error.response.status)
+    console.log('error msg: ' + error.response.data)
+    return
+}
+
+// check if the user is online every 5 seconds
+function CheckOnlineUser(userObj) {
+
+    const promise = axios.post(' https://mock-api.driven.com.br/api/v4/uol/status', userObj)
+    promise.then(CheckOnlineUserPromise)
+    promise.catch(CheckOnlineUserError)
+}
+
+const CheckOnlineUserPromise = (promise) => console.log('user online')
+const CheckOnlineUserError = (error) => console.log('user offline')
