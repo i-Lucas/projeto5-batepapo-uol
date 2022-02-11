@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -44,8 +45,10 @@
     border: none;
 }
 
-
-/*  */
+.loading {
+    position: relative;
+    top: 50px;
+}
 
 header {
     position: fixed;
@@ -58,7 +61,6 @@ header {
     align-items: center;
     padding-left: 25px;
     padding-right: 25px;
-    /* background-color: aqua; */
 }
 
 header img {
@@ -69,9 +71,6 @@ header img {
 header ion-icon {
     font-size: 42px;
 }
-
-
-/*  */
 
 footer {
     position: fixed;
@@ -84,7 +83,6 @@ footer {
     align-items: center;
     background: #FFFFFF;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-    /* background-color: red; */
 }
 
 footer ion-icon {
@@ -107,7 +105,6 @@ footer input {
     border: none;
 }
 
-
 /*  */
 
 .page-content {
@@ -128,7 +125,6 @@ footer input {
     font-size: 14px;
 }
 
-
 /* spans */
 
 .span-user {
@@ -145,9 +141,6 @@ footer input {
     color: #AAAAAA;
 }
 
-
-/*  */
-
 .private {
     background-color: #FFDEDE;
 }
@@ -155,7 +148,6 @@ footer input {
 .status {
     background-color: #DCDCDC;
 }
-
 
 /* sidebar */
 
@@ -187,8 +179,6 @@ footer input {
     margin-left: 20px;
     display: flex;
     align-items: center;
-    background-color: salmon;
-    /* pedir orientação aqui */
 }
 
 .user-selected {
@@ -233,23 +223,6 @@ footer input {
     margin-top: 20px;
 }
 
-
-/*  */
-
-.blackout {
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.9);
-    animation-duration: 3s;
-    animation-name: gradientshow;
-}
-
-
-/*  */
-
 .display-flex {
     display: flex;
 }
@@ -258,12 +231,15 @@ footer input {
     display: none
 }
 
-
 /*  response */
 
 @media (max-width: 600px) {
     footer input {
-        width: 60%
+        width: 60%;
+    }
+
+    body {
+        max-width: 500px;
     }
 }
 
@@ -271,11 +247,11 @@ footer input {
     .sidebar {
         width: 25%;
     }
+
     footer input {
         width: 80%
     }
 }
-
 
 /* anims */
 
@@ -289,33 +265,11 @@ footer input {
     animation-name: animshow;
 }
 
-.removegradient {
-    animation-duration: 3s;
-    animation-name: gradienthidden;
-}
-
-@keyframes gradienthidden {
-    from {
-        background: rgba(0, 0, 0, 0.9);
-    }
-    to {
-        background: rgba(0, 0, 0, 0.1);
-    }
-}
-
-@keyframes gradientshow {
-    from {
-        background: rgba(0, 0, 0, 0.1);
-    }
-    to {
-        background: rgba(0, 0, 0, 0.9);
-    }
-}
-
 @keyframes animshow {
     from {
         right: -350px;
     }
+
     to {
         right: 0px;
     }
@@ -325,6 +279,7 @@ footer input {
     from {
         right: 0px;
     }
+
     to {
         right: -350px;
     }

@@ -25,11 +25,16 @@ function PromiseNameError(error) {
 let IntervalSendStatusOnline
 let IntervalGetServerMessages
 
+const spinnerLoading = document.querySelector('.loading')
 function PromiseNameReceived(response) {
-    Login()
     IntervalSendStatusOnline = setInterval(SendStatusOnline, 5000)
     IntervalGetServerMessages = setInterval(GetServerMessagesPromise, 5000)
+    spinnerLoading.classList.remove('hidden')
+    setTimeout(removeSpinner, 5000)
+    setTimeout(Login, 5000)
 }
+
+const removeSpinner = () => spinnerLoading.remove()
 
 function SendStatusOnline() {
     let promise = axios.post('https://mock-api.driven.com.br/api/v4/uol/status', { name: UserName })
@@ -65,17 +70,14 @@ function RenderMessages(promise) {
 }
 
 function DeleteMessages() {
-    let page = document.querySelector('.page-content')
-    if (page.firstChild !== null || page.firstChild !== undefined) {
-        while (page.firstChild) {
-            page.removeChild(page.firstChild)
-        }
-    }
+    document.querySelector('.page-content').innerHTML = ''
 }
 
+let ServerTime = `00:00:00`
 function BuildMessages(from, to, text, type, time) {
 
     const container = document.querySelector('.page-content')
+    ServerTime = time
 
     if (type === 'status') {
         container.innerHTML += `
@@ -111,17 +113,8 @@ function BuildMessages(from, to, text, type, time) {
 }
 
 function SendMessageUserToServer(to, text, type) {
-
-    let msgdata = {
-        from: UserName,
-        to: to,
-        text: text,
-        type: type
-    }
-
-    let time = GetUserTime()
-    BuildMessages(UserName, to, text, type, time)
-
+    let msgdata = { from: UserName, to: to, text: text, type: type }
+    BuildMessages(UserName, to, text, type, ServerTime)
     let userpost = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages', msgdata)
     userpost.then(SendMessageUserToServerPromise)
     userpost.catch(SendMessageUserToServerError)
@@ -146,21 +139,18 @@ function CheckDisconectedUser() {
 const homescreen = document.querySelector('.home-screen')
 const main = document.querySelector('main')
 
-// sidebar
-const blackout = document.querySelector('.blackout')
-const sidebar = document.querySelector('nav')
-
 function Exit() {
     console.log('You have been disconnected')
     homescreen.classList.remove('hidden')
     main.classList.add('hidden')
     sidebar.classList.remove('hidden')
-
+    UserOnline = false
     clearInterval(IntervalSendStatusOnline)
     clearInterval(IntervalGetServerMessages)
 }
 
 function Login() {
+    UserOnline = true
     console.log('welcome to the jungle')
     homescreen.classList.add('hidden')
     main.classList.remove('hidden')
@@ -168,23 +158,18 @@ function Login() {
 }
 
 // sidebar 
-function RemoveSidebar() {
+const sidebar = document.querySelector('nav')
 
-    blackout.classList.add('removegradient')
+function RemoveSidebar() {
     sidebar.classList.remove('anim-show')
     sidebar.classList.add('anim-hidden')
-
     setTimeout(() => {
         sidebar.classList.add('hidden')
         sidebar.classList.remove('anim-hidden')
-
-        blackout.classList.remove('removegradient')
-        blackout.classList.add('hidden')
     }, 2000);
 }
 
 function ShowSidebar() {
-    blackout.classList.remove('hidden')
     sidebar.classList.add('anim-show')
     sidebar.classList.remove('hidden')
 }
@@ -194,21 +179,14 @@ document.addEventListener('keypress', GetUserMessage)
 
 function GetUserMessage(userkey) {
 
-    if (userkey.key === 'Enter' || userkey === 'button') {
-
-        let text = document.querySelector('#usertext').value
-        document.querySelector('#submit').click();
-        document.querySelector('#usertext').value = ''
-        SendMessageUserToServer(userSelected, text, typeSelected)
+    if (UserOnline) {
+        if (userkey.key === 'Enter' || userkey === 'button') {
+            let text = document.querySelector('#usertext').value
+            document.querySelector('#submit').click();
+            document.querySelector('#usertext').value = ''
+            SendMessageUserToServer(userSelected, text, typeSelected)
+        }
     }
-}
-
-function GetUserTime() {
-    let data = new Date();
-    let hr = data.getHours();
-    let min = data.getMinutes();
-    let seg = data.getSeconds();
-    return `${hr}:${min}:${seg}`
 }
 
 // fill the sidebar with users who are online
@@ -241,7 +219,7 @@ function FillSidebar(users) {
     sidebar.innerHTML = ''
     for (let i = 0; i < users.length; i++) {
         sidebar.innerHTML += `
-        <div class='display-flex box' onclick='SelectUser(this)'>
+        <div class='user display-flex box' onclick='SelectUser(this)'>
             <ion-icon name="person-circle"></ion-icon>
             <p class="spacing">${users[i]}</p>
             <ion-icon name="checkmark-outline" class='user-selected hidden'></ion-icon>
@@ -313,8 +291,8 @@ function SelectOption(option, type) {
 
 // resta fazer:
 
+// verificar pq o blackout (animação de background sidebar) não está funcionando
 // refatorar as funções SelectUser e SelectOption
 // ajustar Css do sidebar (nome dos usuarios)
 // ajustar largura máxima das caixas de mensagem
 // ajustar quebra de linha dos textos e espaçamento
-// verificar pq o blackout (animação de background sidebar) não está funcionando
