@@ -48,6 +48,8 @@
 .loading {
     position: relative;
     top: 50px;
+    width: 25px;
+    height: 25px;
 }
 
 header {
@@ -61,6 +63,7 @@ header {
     align-items: center;
     padding-left: 25px;
     padding-right: 25px;
+    background-color: #FFFFFF;
 }
 
 header img {
@@ -151,6 +154,11 @@ footer input {
 
 /* sidebar */
 
+.container {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .sidebar {
     position: fixed;
     top: 0px;
@@ -174,7 +182,7 @@ footer input {
 }
 
 .sidebar .box {
-    width: 100%;
+    width: 210px;
     height: 35px;
     margin-left: 20px;
     display: flex;
@@ -237,6 +245,9 @@ footer input {
     footer input {
         width: 60%;
     }
+    .sidebar .box {
+        width: 225px;
+    }
 
     body {
         max-width: 500px;
@@ -246,6 +257,9 @@ footer input {
 @media (min-width: 700px) {
     .sidebar {
         width: 25%;
+    }
+    .sidebar .box {
+        width: 280px;
     }
 
     footer input {

@@ -28,7 +28,7 @@ let IntervalGetServerMessages
 const spinnerLoading = document.querySelector('.loading')
 function PromiseNameReceived(response) {
     IntervalSendStatusOnline = setInterval(SendStatusOnline, 5000)
-    IntervalGetServerMessages = setInterval(GetServerMessagesPromise, 5000)
+    IntervalGetServerMessages = setInterval(GetServerMessagesPromise, 3000)
     spinnerLoading.classList.remove('hidden')
     setTimeout(removeSpinner, 5000)
     setTimeout(Login, 5000)
@@ -288,11 +288,3 @@ function SelectOption(option, type) {
         return
     }
 }
-
-// resta fazer:
-
-// verificar pq o blackout (animação de background sidebar) não está funcionando
-// refatorar as funções SelectUser e SelectOption
-// ajustar Css do sidebar (nome dos usuarios)
-// ajustar largura máxima das caixas de mensagem
-// ajustar quebra de linha dos textos e espaçamento
