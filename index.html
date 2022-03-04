@@ -1,84 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link href="./img/favicon.ico" TYPE="image/ico" REL="icon">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bate-papo UOL</title>
+  <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
+  <div class="menu-fundo fundo-escondido" onclick="toggleMenu()"></div>
 
-    <section class='home-screen'>
-        <!-- hidden -->
-        <div class="home-content">
-            <img src="./img/logo.png" alt="">
-            <input class='user-name' type="text">
-            <button onclick="GetUserName()">Entrar</button>
-            <img src="./img/loader.gif" class="loading hidden" />
-        </div>
-    </section>
+  <header>
+    <img src="img/logo.png">
+    <ion-icon name="people-sharp" onclick="toggleMenu()"></ion-icon>
+  </header>
 
+  <main>
+    <ul class="mensagens-container">
+    </ul>
+  </main>
 
-    <main class='hidden'>
-        <!-- hidden -->
-        <header>
-            <img src="./img/logo.png" alt="">
-            <div class="show-sidebar" onclick="ShowSidebar()">
-                <ion-icon name="people"></ion-icon>
-            </div>
-        </header>
+  <footer>
+    <div class="entrada-mensagem">
+      <input placeholder="Escreva aqui..." class="input-mensagem"></input>
+      <span class="enviando">Enviando para Todos</span>
+    </div>
+    <button onclick="enviarMensagem()" data-identifier="send-message">
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </button>
+  </footer>
 
-        <section class="page-content">
-        </section>
+  <aside class="menu escondido">
+    <h3 class="titulo-menu">Escolha um contato para enviar mensagem:</h3>
+    <ul class="contatos">
 
-        <nav class='sidebar '>
-            <!-- hidden -->
-            <div class="title">
-                <h1>Escolha um contato<br> para enviar mensagem:</h1>
-            </div>
-            <div class='message-for-all display-flex box' onclick='SelectOption(this, "message")'>
-                <ion-icon name="people"></ion-icon>
-                <p class="spacing">Todos</p>
-                <ion-icon name="checkmark-outline" class='user-selected hidden'></ion-icon>
-            </div>
-            <div class="container">
-            </div>
+    </ul>
+    <h3 class="titulo-menu">Escolha a visibilidade:</h3>
+    <ul class="visibilidades">
+      <li class="visibilidade-publico selecionado">
+        <ion-icon name="lock-open"></ion-icon>Público<ion-icon class="check" name="checkmark-outline">
+        </ion-icon>
+      </li>
+      <li class="visibilidade-privado">
+        <ion-icon name="lock-closed"></ion-icon>Reservadamente<ion-icon class="check" name="checkmark-outline">
+        </ion-icon>
+      </li>
+    </ul>
+  </aside>
 
-            <div class="title">
-                <h1>Escolha a visibilidade:</h1>
-            </div>
-            <div class='public-message display-flex box' onclick='SelectOption(this, "message")'>
-                <ion-icon name="lock-open"></ion-icon>
-                <p class="spacing">Público</p>
-                <ion-icon name="checkmark-outline" class='user-selected hidden'></ion-icon>
-            </div>
-            <div class='private-message display-flex box' onclick='SelectOption(this, "private_message")'>
-                <ion-icon name="lock-closed"></ion-icon>
-                <p class="spacing">Reservadamente</p>
-                <ion-icon name="checkmark-outline" class='user-selected hidden'></ion-icon>
-            </div>
-            <div class="exit display-flex box" onclick="RemoveSidebar()">
-                <ion-icon name="exit-outline"></ion-icon>
-            </div>
-        </nav>
-
-        <footer>
-            <input type='text' id='usertext' placeholder="Escreva aqui...">
-            <input type='submit' id='submit' class='hidden'>
-            <div class="send-btn" onclick='GetUserMessage("button")'>
-                <ion-icon name="paper-plane-outline"></ion-icon>
-            </div>
-        </footer>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script src="./src/app.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="src/app.js"></script>
 </body>
 
 </html>
